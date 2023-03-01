@@ -1,21 +1,16 @@
 package edu.iastate.cs228.hw2;
+import java.util.Random;
 
 public class DELETEmain {
 
     public static void main(String[] args) {
-        Point[] pts = new Point[5];
+        Random rand = new Random(5);
+        Point[] testPts = CompareSorters.generateRandomPoints(10, rand);
 
-        pts[0] = new Point(0,100);
-        pts[1] = new Point(0, 90);
-        pts[2] = new Point(0, 80);
-        pts[3] = new Point(0, 70);
-        pts[4] = new Point(0, 60);
-
-        SelectionSorter s = new SelectionSorter(pts);
-        s.setComparator(1);
+        AbstractSorter s = new InsertionSorter(testPts);
+        s.setComparator(0);
         s.sort();
-
-        for (int i=0; i<pts.length; i++) {
+        for (int i=0; i< testPts.length; i++) {
             System.out.println(s.points[i].toString());
         }
 

@@ -72,9 +72,15 @@ public class CompareSorters
 	 * @throws IllegalArgumentException if numPts < 1
 	 */
 	public static Point[] generateRandomPoints(int numPts, Random rand) throws IllegalArgumentException
-	{ 
-		return null; 
-		// TODO 
+	{
+		Random generator = rand;
+		Point[] ret = new Point[numPts];
+		for (int i=0; i<numPts; i++) {
+			int x = generator.nextInt(101)-50;
+			int y = generator.nextInt(101)-50;
+			ret[i] = new Point(x,y);
+		}
+		return ret;
 	}
 	
 }

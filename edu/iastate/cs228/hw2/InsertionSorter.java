@@ -30,7 +30,8 @@ public class InsertionSorter extends AbstractSorter
 	 */
 	public InsertionSorter(Point[] pts) 
 	{
-		// TODO 
+		super(pts);
+		this.algorithm = "selection sort";
 	}	
 
 	
@@ -40,6 +41,14 @@ public class InsertionSorter extends AbstractSorter
 	@Override 
 	public void sort()
 	{
-		// TODO 
+		for (int i=1; i<this.points.length; i++) {
+			Point temp = this.points[i];
+			int j = i-1;
+			while (j > -1 && pointComparator.compare(this.points[j], temp) == 1) {
+				this.points[j+1] = this.points[j];
+				j--;
+			}
+			this.points[j+1] = temp;
+		}
 	}		
 }

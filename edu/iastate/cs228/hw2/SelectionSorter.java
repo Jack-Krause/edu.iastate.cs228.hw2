@@ -45,7 +45,7 @@ public class SelectionSorter extends AbstractSorter
 		for (int i=0; i<this.points.length-1; i++) {
 			int minIndex = i;
 			for (int k=i+1; k<points.length; k++) {
-				if (points[k].compareTo(points[minIndex]) == 1) {
+				if (pointComparator.compare(points[k], points[minIndex]) < 0) {
 					minIndex = k;
 				}
 			}

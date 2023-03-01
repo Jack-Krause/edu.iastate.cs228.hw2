@@ -57,6 +57,8 @@ public abstract class AbstractSorter
 		}
 	}
 
+
+
 		
 	
 	
@@ -84,7 +86,15 @@ public abstract class AbstractSorter
 		} else {
 			throw new IllegalArgumentException();
 		}
+		pointComparator = new Comparator<Point>() {
+			@Override
+			public int compare(Point o1, Point o2) {
+				return o1.compareTo(o2);
+			}
+		};
 	}
+
+
 
 	
 

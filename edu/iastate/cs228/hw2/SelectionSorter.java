@@ -30,7 +30,8 @@ public class SelectionSorter extends AbstractSorter
 	 */
 	public SelectionSorter(Point[] pts)  
 	{
-		// TODO 
+		super(pts);
+		this.algorithm = "selection sort";
 	}	
 
 	
@@ -41,6 +42,14 @@ public class SelectionSorter extends AbstractSorter
 	@Override 
 	public void sort()
 	{
-		// TODO 
+		for (int i=0; i<this.points.length-1; i++) {
+			int minIndex = i;
+			for (int k=i+1; k<points.length; k++) {
+				if (points[k].compareTo(points[minIndex]) == 1) {
+					minIndex = k;
+				}
+			}
+			swap(minIndex, i);
+		}
 	}	
 }

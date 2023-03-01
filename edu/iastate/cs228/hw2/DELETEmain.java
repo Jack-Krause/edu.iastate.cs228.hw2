@@ -7,7 +7,7 @@ public class DELETEmain {
         Random rand = new Random(5);
         Point[] testPts = CompareSorters.generateRandomPoints(10, rand);
 
-        AbstractSorter s = new InsertionSorter(testPts);
+        AbstractSorter s = new MergeSorter(testPts);
         s.setComparator(0);
         s.sort();
         for (int i=0; i< testPts.length; i++) {

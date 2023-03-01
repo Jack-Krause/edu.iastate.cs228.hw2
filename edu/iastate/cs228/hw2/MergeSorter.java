@@ -29,7 +29,8 @@ public class MergeSorter extends AbstractSorter
 	 */
 	public MergeSorter(Point[] pts) 
 	{
-		// TODO  
+		super(pts);
+		this.algorithm = "merge sort";
 	}
 
 
@@ -40,7 +41,7 @@ public class MergeSorter extends AbstractSorter
 	@Override 
 	public void sort()
 	{
-		// TODO 
+		mergeSortRec(this.points);
 	}
 
 	
@@ -51,12 +52,59 @@ public class MergeSorter extends AbstractSorter
 	 * 
 	 * @param pts	point array 
 	 */
-	private void mergeSortRec(Point[] pts)
-	{
-		
+	private void mergeSortRec(Point[] pts) {
+		int n = pts.length;
+		if (n<=1) { return; }
+
+		int middle = n/2;
+
+		Point[] left = new Point[middle];
+		Point[] right = new Point[n-middle];
+		for (int i=0; i<middle; i++) {
+			left[i] = pts[i];
+		}
+		for (int k=middle; k<n; k++) {
+			left[k-middle] = pts[k];
+		}
+
+		mergeSortRec(left);
+		mergeSortRec(right);
+		pts = merge(left, right);
 	}
 
 	
 	// Other private methods if needed ...
+	private Point[] merge(Point[] Left, Point[] Right) {
+		int p = Left.length;
+		int q = Right.length;
 
+		Point[] arr = new Point[p+q];
+		int l = 0;
+		int r = 0;
+		int k = 0;
+
+		while (l < p && r < q) {
+			if (pointComparator.compare(Left[l], Right[r]) > -1) {
+				arr[k] = new Point(Left[l]);
+				l++;
+			} else {
+				arr[k] = new Point(Right[r]);
+				r++;
+			}
+			k++;
+		}
+
+		while (l < p) {
+			arr[k] = new Point(Left[l]);
+			k++;
+			l++;
+		}
+
+		while (r < q) {
+			arr[k] = new Point(Right[r]);
+			k++;
+			r++;
+		}
+		return arr;
+	}
 }

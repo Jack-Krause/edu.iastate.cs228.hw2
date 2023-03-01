@@ -72,6 +72,12 @@ public class AbstractSorterTest {
     @Test
     public void mergeSortTest() {
         merge = new MergeSorter(testArr);
+        merge.setComparator(0);
+        merge.sort();
+        assertTrue(checkSort(0, merge));
+        merge.setComparator(1);
+        merge.sort();
+        assertTrue(checkSort(1, merge));
     }
 
 

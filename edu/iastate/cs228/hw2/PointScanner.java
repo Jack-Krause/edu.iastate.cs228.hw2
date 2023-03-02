@@ -6,8 +6,10 @@ package edu.iastate.cs228.hw2;
  *
  */
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.InputMismatchException;
+import java.util.Scanner;
 
 
 /**
@@ -38,7 +40,14 @@ public class PointScanner
 	 */
 	public PointScanner(Point[] pts, Algorithm algo) throws IllegalArgumentException
 	{
-		
+		if (pts == null || pts.length == 0) {
+			throw new IllegalArgumentException();
+		}
+
+		this.points = new Point[pts.length];
+		for (int i=0; i<pts.length; i++) {
+			this.points[i] = new Point(pts[i]);
+		}
 	}
 
 	
@@ -51,7 +60,31 @@ public class PointScanner
 	 */
 	protected PointScanner(String inputFileName, Algorithm algo) throws FileNotFoundException, InputMismatchException
 	{
-		// TODO
+		File f = new File(inputFileName);
+		int counter = 0;
+		Scanner scnr = new Scanner(f);
+		while (scnr.hasNextInt()) {
+			counter++;
+			scnr.nextInt();
+		}
+		scnr.close();
+		if (counter % 2 != 0) {
+			throw new InputMismatchException();
+		}
+		this.points = new Point[counter/2];
+		this.sortingAlgorithm = algo;
+		scnr = new Scanner(f);
+		int pCounter = 0;
+		while (scnr.hasNextInt()) {
+			int a = scnr.nextInt();
+			int b = 0;
+			if (scnr.hasNextInt()) {
+				b = scnr.nextInt();
+			}
+			points[pCounter] = new Point(a, b);
+			pCounter++;
+		}
+
 	}
 
 	
@@ -131,7 +164,9 @@ public class PointScanner
 		// TODO 
 	}	
 
-	
+	public Point[] getPoints() {
+		return this.points;
+	}
 
 		
 }

@@ -30,7 +30,7 @@ public class MergeSorter extends AbstractSorter
 	public MergeSorter(Point[] pts) 
 	{
 		super(pts);
-		this.algorithm = "merge sort";
+		this.algorithm = "mergesort";
 	}
 
 
@@ -63,8 +63,8 @@ public class MergeSorter extends AbstractSorter
 		for (int i=0; i<middle; i++) {
 			left[i] = pts[i];
 		}
-		for (int k=0; k<n-middle; k++) {
-			left[k-middle] = pts[k];
+		for (int k=middle; k<n; k++) {
+			right[k-middle] = pts[k];
 		}
 
 		mergeSortRec(left);
@@ -87,7 +87,7 @@ public class MergeSorter extends AbstractSorter
 		int k = 0;
 
 		while (l < p && r < q) {
-			if (pointComparator.compare(Left[l], Right[r]) <= 0) {
+			if (pointComparator.compare(Left[l], Right[r]) < 1) {
 				arr[k] = new Point(Left[l]);
 				l++;
 			} else {

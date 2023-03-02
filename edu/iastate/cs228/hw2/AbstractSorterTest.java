@@ -18,22 +18,23 @@ public class AbstractSorterTest {
 
     /**
      * Helper method to check if the array is sorted correctly.
+     *
      * @param i - 0 if sorted by X, 1 if sorted by Y
      * @param s - (sorter) AbstractSorter
      * @return
      */
     private boolean checkSort(int i, AbstractSorter s) {
-        if (i==0) {
-            for (int j=0; j<s.points.length-1; j++) {
+        if (i == 0) {
+            for (int j = 0; j < s.points.length - 1; j++) {
                 int temp = s.points[i].getX();
                 if (temp > s.points[i + 1].getX()) {
                     return false;
                 }
             }
-        } else if (i==1) {
-            for (int k=0; k<s.points.length-1; k++) {
+        } else if (i == 1) {
+            for (int k = 0; k < s.points.length - 1; k++) {
                 int temp = s.points[i].getY();
-                if (temp > s.points[i+1].getY()) {
+                if (temp > s.points[i + 1].getY()) {
                     return false;
                 }
             }
@@ -80,6 +81,17 @@ public class AbstractSorterTest {
         assertTrue(checkSort(1, merge));
     }
 
+    @Test
+    public void quickSortTest() {
+        quick = new QuickSorter(testArr);
+        quick.setComparator(0);
+        quick.sort();
+        assertTrue(checkSort(0, quick));
+        quick.setComparator(1);
+        quick.sort();
+        assertTrue(checkSort(1, quick));
+
+    }
 
 
 //

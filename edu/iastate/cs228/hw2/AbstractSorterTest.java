@@ -90,7 +90,6 @@ public class AbstractSorterTest {
         quick.setComparator(1);
         quick.sort();
         assertTrue(checkSort(1, quick));
-
     }
 
 

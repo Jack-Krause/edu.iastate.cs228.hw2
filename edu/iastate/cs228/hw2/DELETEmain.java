@@ -8,8 +8,8 @@ public class DELETEmain {
     public static void main(String[] args) {
         Random rand = new Random(5);
         Point[] testPts = CompareSorters.generateRandomPoints(20, rand);
-        AbstractSorter m = new MergeSorter(testPts);
-        m.setComparator(1);
+        AbstractSorter m = new QuickSorter(testPts);
+        m.setComparator(0);
         m.sort();
         for (int i=0; i<m.points.length; i++) {
             System.out.println(m.points[i].toString());

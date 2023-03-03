@@ -103,21 +103,37 @@ public class PointScanner
 	public void scan()
 	{
 		// TODO  
-		AbstractSorter aSorter; 
-		
-		// create an object to be referenced by aSorter according to sortingAlgorithm. for each of the two 
-		// rounds of sorting, have aSorter do the following: 
-		// 
-		//     a) call setComparator() with an argument 0 or 1. 
-		//
-		//     b) call sort(). 		
-		// 
-		//     c) use a new Point object to store the coordinates of the medianCoordinatePoint
-		//
-		//     d) set the medianCoordinatePoint reference to the object with the correct coordinates.
-		//
-		//     e) sum up the times spent on the two sorting rounds and set the instance variable scanTime. 
-		
+		AbstractSorter aSorter = null;
+		if (sortingAlgorithm == null) {
+			return;
+		} else if (sortingAlgorithm == Algorithm.QuickSort) {
+			aSorter = new QuickSorter(this.points);
+		} else if (sortingAlgorithm == Algorithm.MergeSort) {
+			aSorter = new MergeSorter(this.points);
+		} else if (sortingAlgorithm == Algorithm.InsertionSort) {
+			aSorter = new InsertionSorter(this.points);
+		} else if (sortingAlgorithm == Algorithm.SelectionSort) {
+			aSorter = new InsertionSorter(this.points);
+		}
+
+		//Sorting for X:
+		aSorter.setComparator(0);
+		long startTimeX = System.nanoTime();
+		aSorter.sort();
+		long elapsedX = System.nanoTime() - startTimeX;
+		int medX = aSorter.getMedian().getX();
+
+		//Sorting for Y:
+		aSorter.setComparator(1);
+		long startTimeY = System.nanoTime();
+		aSorter.sort();
+		long elapsedY = System.nanoTime() - startTimeY;
+		int medY = aSorter.getMedian().getY();
+		medianCoordinatePoint = new Point(medX, medY);
+
+		//elapsed time
+		long elapsed = elapsedX + elapsedY;
+		this.scanTime = elapsed;
 	}
 	
 	
@@ -134,8 +150,13 @@ public class PointScanner
 	 */
 	public String stats()
 	{
-		return null; 
-		// TODO 
+		StringBuilder s = new StringBuilder();
+		String one = String.format("%-17s", this.sortingAlgorithm);
+		s.append(one);
+		String two = String.format("%-9s", this.points.length);
+		s.append(two);
+		s.append(this.scanTime);
+		return s.toString();
 	}
 	
 	

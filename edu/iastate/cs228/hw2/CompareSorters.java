@@ -29,28 +29,65 @@ public class CompareSorters
 	 * @param args
 	 **/
 	public static void main(String[] args) throws FileNotFoundException
-	{		
-		// TODO 
-		// 
-		// Conducts multiple rounds of comparison of four sorting algorithms.  Within each round, 
-		// set up scanning as follows: 
-		// 
-		//    a) If asked to scan random points, calls generateRandomPoints() to initialize an array 
-		//       of random points. 
-		// 
-		//    b) Reassigns to the array scanners[] (declared below) the references to four new 
-		//       PointScanner objects, which are created using four different values  
-		//       of the Algorithm type:  SelectionSort, InsertionSort, MergeSort and QuickSort. 
-		// 
-		// 	
+	{
 		PointScanner[] scanners = new PointScanner[4];
+		Point[] pointArray = null;
+		PointScanner selectionScanner = null;
+		PointScanner insertionScanner = null;
+		PointScanner mergeScanner = null;
+		PointScanner quickScanner = null;
+
 		Scanner scnr = new Scanner(System.in);
+
+		int trial = 1;
 		System.out.println("key: 1 (random) 2 (file input) 3 (exit)");
-		int counter = 0;
-		System.out.print("Trial ");
-		System.out.print(counter);
-		int userInput = scnr.nextInt();
-		System.out.println(userInput);
+		int userInput = 0;
+		while (userInput != 3) {
+			System.out.println("Trial: ");
+			userInput = scnr.nextInt();
+			System.out.println(userInput);
+			if (userInput == 1) {
+				System.out.println("Enter number of random points: ");
+				int pointsNumber = scnr.nextInt();
+				System.out.println(pointsNumber);
+				Random r = new Random();
+				pointArray = generateRandomPoints(pointsNumber, r);
+				selectionScanner = new PointScanner(pointArray, Algorithm.SelectionSort);
+				insertionScanner = new PointScanner(pointArray, Algorithm.InsertionSort);
+				mergeScanner = new PointScanner(pointArray, Algorithm.MergeSort);
+				quickScanner = new PointScanner(pointArray, Algorithm.QuickSort);
+			} else if (userInput == 2) {
+				System.out.println("Points from a file");
+				String fileName = scnr.next();
+				System.out.println(fileName);
+				try {
+					selectionScanner = new PointScanner(fileName, Algorithm.SelectionSort);
+					insertionScanner = new PointScanner(fileName, Algorithm.InsertionSort);
+					mergeScanner = new PointScanner(fileName, Algorithm.MergeSort);
+					quickScanner = new PointScanner(fileName, Algorithm.QuickSort);
+				} catch (FileNotFoundException e) {
+					//
+				}
+			} else {
+				break;
+			}
+			//
+			scanners[0] = selectionScanner;
+			scanners[1] = insertionScanner;
+			scanners[2] = mergeScanner;
+			scanners[3] = quickScanner;
+
+			System.out.println("algorithm size time (ns)");
+			System.out.println("----------------------------------");
+			for (int i=0; i<scanners.length; i++) {
+				scanners[i].scan();
+				System.out.println(scanners[i].stats());
+			}
+			System.out.println("----------------------------------");
+			System.out.println();
+			trial++;
+		}
+
 		// For each input of points, do the following.
 		// 
 		//     a) Initialize the array scanners[].  

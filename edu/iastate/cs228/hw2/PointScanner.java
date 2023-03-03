@@ -8,6 +8,8 @@ package edu.iastate.cs228.hw2;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -183,13 +185,21 @@ public class PointScanner
 	 * This method, called after scanning, writes point data into a file by outputFileName. The format 
 	 * of data in the file is the same as printed out from toString().  The file can help you verify 
 	 * the full correctness of a sorting result and debug the underlying algorithm. 
-	 * 
+	 * NOTE TO INSTRUCTORS: (I added the string parameter (saw this on PIAZZA), not sure if supposed to just create a file, but since it throws FILENOTFOUND, I assume we are supposed to use a parameter file name. -JACK KRAUSE
 	 * @throws FileNotFoundException
+	 * param - String outputFileName
 	 */
-	public void writeMCPToFile() throws FileNotFoundException
+	public void writeMCPToFile(String outputFileName) throws FileNotFoundException
 	{
-		// TODO 
-	}	
+		File f = new File(outputFileName);
+		try {
+			FileWriter w = new FileWriter(f);
+			w.write(this.toString());
+			w.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public Point[] getPoints() {
 		return this.points;

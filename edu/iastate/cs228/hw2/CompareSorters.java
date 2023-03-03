@@ -43,9 +43,15 @@ public class CompareSorters
 		//       of the Algorithm type:  SelectionSort, InsertionSort, MergeSort and QuickSort. 
 		// 
 		// 	
-		PointScanner[] scanners = new PointScanner[4]; 
-		
-		// For each input of points, do the following. 
+		PointScanner[] scanners = new PointScanner[4];
+		Scanner scnr = new Scanner(System.in);
+		System.out.println("key: 1 (random) 2 (file input) 3 (exit)");
+		int counter = 0;
+		System.out.print("Trial ");
+		System.out.print(counter);
+		int userInput = scnr.nextInt();
+		System.out.println(userInput);
+		// For each input of points, do the following.
 		// 
 		//     a) Initialize the array scanners[].  
 		//

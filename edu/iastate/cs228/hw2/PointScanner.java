@@ -40,6 +40,7 @@ public class PointScanner
 	 */
 	public PointScanner(Point[] pts, Algorithm algo) throws IllegalArgumentException
 	{
+		this.sortingAlgorithm = algo;
 		if (pts == null || pts.length == 0) {
 			throw new IllegalArgumentException();
 		}
@@ -134,6 +135,7 @@ public class PointScanner
 		//elapsed time
 		long elapsed = elapsedX + elapsedY;
 		this.scanTime = elapsed;
+		System.out.println("finished");
 	}
 	
 	
@@ -167,8 +169,12 @@ public class PointScanner
 	@Override
 	public String toString()
 	{
-		return null; 
-		// TODO
+		StringBuilder s = new StringBuilder("MCP: (");
+		s.append(this.medianCoordinatePoint.getX());
+		s.append(", ");
+		s.append(this.medianCoordinatePoint.getY());
+		s.append(')');
+		return s.toString();
 	}
 
 	

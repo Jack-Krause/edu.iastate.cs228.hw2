@@ -8,8 +8,9 @@ public class DELETEmain {
         Random r = new Random(7);
         Point[] pts = CompareSorters.generateRandomPoints(20, r);
         PointScanner s = new PointScanner(pts, Algorithm.MergeSort);
-        String testString = s.stats();
-        System.out.println(testString);
+        s.scan();
+        System.out.println(s.stats());
+        System.out.println(s.toString());
     }
 
 

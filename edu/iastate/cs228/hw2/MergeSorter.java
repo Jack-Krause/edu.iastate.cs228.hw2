@@ -7,7 +7,7 @@ import java.util.InputMismatchException;
 
 /**
  *  
- * @author
+ * @author Jack Krause
  *
  */
 

@@ -2,7 +2,7 @@ package edu.iastate.cs228.hw2;
 
 /**
  *  
- * @author
+ * @author Jack Krause
  *
  */
 
@@ -87,19 +87,6 @@ public class CompareSorters
 			System.out.println();
 			trial++;
 		}
-
-		// For each input of points, do the following.
-		// 
-		//     a) Initialize the array scanners[].  
-		//
-		//     b) Iterate through the array scanners[], and have every scanner call the scan() 
-		//        method in the PointScanner class.  
-		//
-		//     c) After all four scans are done for the input, print out the statistics table from
-		//		  section 2.
-		//
-		// A sample scenario is given in Section 2 of the project description. 
-		
 	}
 	
 	

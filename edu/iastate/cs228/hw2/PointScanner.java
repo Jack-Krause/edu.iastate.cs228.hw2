@@ -105,7 +105,6 @@ public class PointScanner
 	 */
 	public void scan()
 	{
-		// TODO  
 		AbstractSorter aSorter = null;
 		if (sortingAlgorithm == null) {
 			return;
@@ -193,7 +192,8 @@ public class PointScanner
 	{
 		File f = new File(outputFileName);
 		try {
-			FileWriter w = new FileWriter(f);
+			FileWriter w = new FileWriter(f, true);
+			w.write("\n");
 			w.write(this.toString());
 			w.close();
 		} catch (IOException e) {
